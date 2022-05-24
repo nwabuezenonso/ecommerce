@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast'; // pop up notification
 
 const Context = createContext();
 
+// pass in the children to the data
 export const StateContext = ({ children }) => {
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setCartItems] = useState([]);
@@ -14,11 +15,12 @@ export const StateContext = ({ children }) => {
   let index;
 
   const onAdd = (product, quantity) => {
-    const checkProductInCart = cartItems.find((item) => item._id === product._id);
+    const checkProductInCart = cartItems.find((item) => item._id === product._id); // need to know if the item is in the cart
     
-    setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
-    setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
+    setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);  // set the total price
+    setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity); // set the total quantity
     
+    // if cart product then update the quantity
     if(checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {
         if(cartProduct._id === product._id) return {
@@ -27,13 +29,14 @@ export const StateContext = ({ children }) => {
         }
       })
 
-      setCartItems(updatedCartItems);
-    } else {
+      setCartItems(updatedCartItems);  // set cart item to be the update item
+    } else { // else create a new product
       product.quantity = quantity;
       
       setCartItems([...cartItems, { ...product }]);
     }
 
+    // render a message
     toast.success(`${qty} ${product.name} added to the cart.`);
   } 
 
@@ -64,6 +67,7 @@ export const StateContext = ({ children }) => {
     }
   }
 
+  // increase quantity and state with the previous version of the state
   const incQty = () => {
     setQty((prevQty) => prevQty + 1);
   }

@@ -40,8 +40,9 @@ width: 100%;
 }
 .marquee {
   position: relative;
+  left: 15%;
   height: 400px;
-  width: 100%;
+  width: 70%;
   overflow-x: hidden;
 }
 
@@ -724,7 +725,7 @@ margin-top: 160px;
 }
 .flex h5{
   font-size: 16px;
-   color: #324d67;
+  color: #324d67;
 }
 .flex h4{
   font-size: 16px;
@@ -739,7 +740,7 @@ margin-top: 160px;
 }
 .track {
   animation: marquee 10s linear infinite;
-  width: 550%;
+  width: 400%;
 }
 .success-wrapper, .cancel-wrapper{
  
